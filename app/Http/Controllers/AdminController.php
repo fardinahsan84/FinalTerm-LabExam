@@ -78,5 +78,35 @@ class AdminController extends Controller
 
     }
 
+    public function register(Request $req){
 
-   }
+        $username= $req->session()->get('sessionusername');
+
+
+        $user = user::where('username',$username)
+        ->first();
+
+        return view('admin.register')->with('user',$user);
+     }
+
+     public function registerPost(Request $req){
+
+
+
+        $users= new user();
+        $users->name=$req->name;
+        $users->phone=$req->phone;
+        $users->company=$req->company;
+        $users->email=$req->email;
+        $users->username=$req->username;
+        $users->password=$req->password;
+        $users->usertype=$req->usertype;
+
+
+        $users->save();
+
+        return redirect('/admin/register');
+     }
+
+
+}

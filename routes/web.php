@@ -31,3 +31,6 @@ Route::post('/admin/register','AdminController@registerPost');
 
 Route::get('/employee','EmployeeController@index');
 Route::get('/employee/users','EmployeeController@users');
+
+Route::get('/employee/register','EmployeeController@register');
+Route::post('/employee/register','EmployeeController@registerPost');

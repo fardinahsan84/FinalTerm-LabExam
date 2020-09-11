@@ -20,4 +20,29 @@ class EmployeeController extends Controller
         return view('employee.employeehome')->with('user',$user);
     }
 
+    public function register(Request $req){
+
+        $username= $req->session()->get('sessionusername');
+
+
+        $user = user::where('username',$username)
+        ->first();
+
+        return view('employee.register')->with('user',$user);
+     }
+
+     public function registerPost(Request $req){
+
+
+
+        $jobs= new job();
+        $jobs->company=$req->company;
+        $jobs->title=$req->title;
+        $jobs->location=$req->location;
+        $jobs->salary=$req->salary;
+        $jobs->save();
+
+        return redirect('/employee/register');
+     }
+
   }

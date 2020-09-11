@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//admin
 Route::post('/login', 'LoginController@index');
 Route::get('/admin','AdminController@index');
 Route::get('/admin/users','AdminController@users');
@@ -26,3 +26,5 @@ Route::post('/admin/viewprofile/{username}','AdminController@viewProfilePost')->
 
 Route::get('/admin/register','AdminController@register');
 Route::post('/admin/register','AdminController@registerPost');
+
+//employee

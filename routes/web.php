@@ -28,3 +28,6 @@ Route::get('/admin/register','AdminController@register');
 Route::post('/admin/register','AdminController@registerPost');
 
 //employee
+
+Route::get('/employee','EmployeeController@index');
+Route::get('/employee/users','EmployeeController@users');

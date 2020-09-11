@@ -30,5 +30,53 @@ class AdminController extends Controller
          return view('admin.users')->with('user',$user)->with('userinfo',$userinfo);
      }
 
+     public function viewProfile(Request $req,$usernameprofile){
+
+        $username= $req->session()->get('sessionusername');
+
+
+        $user = user::where('username',$username)
+        ->first();
+
+        $userprofile = user::where('username',$usernameprofile)
+        ->first();
+
+        return view('admin.viewprofile')->with('user',$user)
+                                        ->with('userprofile',$userprofile);
+
+
+     }
+
+     public function viewProfilePost(Request $req,$usernameprofile){
+        $userprofile = user::where('username',$usernameprofile)
+        ->first();
+
+         $name=$req->name;
+         $email=$req->email;
+         $phone=$req->phone;
+         $phone=$req->company;
+         $usertype=$req->usertype;
+        if($req->submit=="update"){
+
+            if($name!=""){
+
+            $userprofile->name=$name;
+            $userprofile->email=$email;
+            $userprofile->phone=$phone;
+            $userprofile->company=$company;
+            $userprofile->usertype=$usertype;
+            $userprofile->save();
+            }
+
+           return redirect()->route('admin.viewprofile',$usernameprofile);
+        }
+        if($req->submit=="delete"){
+            $userinfoprofile->delete();
+            return redirect("/admin");
+        }
+
+
+    }
+
 
    }

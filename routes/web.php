@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::post('/login', 'LoginController@index');
 Route::get('/admin','AdminController@index');
 Route::get('/admin/users','AdminController@users');
+
+Route::get('/admin/viewprofile/{username}','AdminController@viewProfile')->name('admin.viewprofile');
+Route::post('/admin/viewprofile/{username}','AdminController@viewProfilePost')->name('admin.viewprofile');
